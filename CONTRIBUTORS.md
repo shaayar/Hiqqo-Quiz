@@ -7,6 +7,7 @@ This project would not be possible without the amazing contributions of the foll
 ### 🎉 Contributors
 
 - **[Contributor's Name](https://github.com/contributorusername)** - Description of contributions (e.g., "Added feature X", "Fixed bug Y")
+- Swayam Bhalotia- Backend
 
 ## How to Contribute
 
