@@ -6,19 +6,18 @@ This project would not be possible without the amazing contributions of the foll
 
 ### 🎉 Contributors
 
-- **[Contributor's Name](https://github.com/contributorusername)** - Description of contributions (e.g., "Added feature X", "Fixed bug Y")
-- Swayam Bhalotia- Backend
-- Mansi Prajapati- Backend
-- Vikas Rai-Backend
-- Tinu Prajapati-Backend
-- Neha Khan- Frontend
-- Shreekanth Yadav- Backend
-- Karan Yadav- Frontend
-- Riya Dubey- Frontend
-- Somya Sharma- Frontend
-- Saurabh Rao- Frontend
-- Sajal Gupta- Frontend
-- 
+- Swayam Bhalotia    - Backend       - 9832900366
+- Mansi Prajapati    - Backend       - 8419913176    (Forgot Password)
+- Vikas Rai          - Backend       - 7666763201    (Login/Signup/  Schema)    
+- Tinu Prajapati     - Backend       - 9971104085    
+- Shreekanth Yadav   - Backend       - 9768232457    (Middleware for Auth/ Schema)
+  
+- Neha Khan          - Frontend      - 7768868221    (Landing Page)
+- Karan Yadav        - Frontend      - 9321779811    (Authentication)
+- Riya Dubey         - Frontend      - 8879984418    (Authentication)
+- Somya Sharma       - Frontend      - 8287411671    (Landing Page)
+- Saurabh Rao        - Frontend      - 9770603366    (Landing Page)
+  
 
 ## How to Contribute
 
