@@ -8,6 +8,17 @@ This project would not be possible without the amazing contributions of the foll
 
 - **[Contributor's Name](https://github.com/contributorusername)** - Description of contributions (e.g., "Added feature X", "Fixed bug Y")
 - Swayam Bhalotia- Backend
+- Mansi Prajapati- Backend
+- Vikas Rai-Backend
+- Tinu Prajapati-Backend
+- Neha Khan- Frontend
+- Shreekanth Yadav- Backend
+- Karan Yadav- Frontend
+- Riya Dubey- Frontend
+- Somya Sharma- Frontend
+- Saurabh Rao- Frontend
+- Sajal Gupta- Frontend
+- 
 
 ## How to Contribute
 
