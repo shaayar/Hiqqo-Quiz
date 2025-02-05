@@ -26,6 +26,9 @@ app.get("/", (req, res) => {
   res.send("Welcome to Hiqqo-Quiz Api!");
 });
 
+const userRoute = require("./routes/UserRoutes");
+app.use("/api/v1",userRoute)
+
 app.listen(port, () => {
   console.log(`Hiqqo-Quiz app listening at http://localhost:${port}`);
 });
