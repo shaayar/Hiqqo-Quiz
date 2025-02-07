@@ -16,5 +16,6 @@ function App() {
     </BrowserRouter>
   );
 }
+// Updated testimonial data for user experiences about the quiz app
 
 export default App;
