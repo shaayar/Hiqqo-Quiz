@@ -17,7 +17,7 @@ This project would not be possible without the amazing contributions of the foll
 - Riya Dubey         - Frontend      - 8879984418    (Authentication)
 - Somya Sharma       - Frontend      - 8287411671    (Landing Page)
 - Saurabh Rao        - Frontend      - 9770603366    (Landing Page)
-  
+- Shreya Shetty      - Frontend      - 8976430144    (Authentication)
 
 ## How to Contribute
 

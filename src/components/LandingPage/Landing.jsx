@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
+import Landing1 from '../section/Landing1.jsx'; 
 
 function Landing() {
   return (
-    <div className='text-blue-500'>Landing</div>
-  )
+    <>
+      <Landing1 />
+    </>
+  );
 }
-
-export default Landing
+export default Landing;
