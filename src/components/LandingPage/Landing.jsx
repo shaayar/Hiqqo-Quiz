@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import Landing6 from "../section/Landing6";
 
 function Landing() {
-  return (
-    <div className='text-blue-500'>Landing</div>
-  )
+  return <Landing6 />;
 }
 
-export default Landing
+export default Landing;
