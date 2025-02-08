@@ -1,8 +1,9 @@
 import React from 'react'
+import TestimonialsPage from './section/TestimonialsPage'
 
 function Landing() {
   return (
-    <div className='text-blue-500'>Landing</div>
+    <TestimonialsPage/>
   )
 }
 
