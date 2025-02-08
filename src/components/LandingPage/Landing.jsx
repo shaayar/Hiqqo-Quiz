@@ -1,8 +1,12 @@
-import React from 'react'
+import Landing7 from "../section/Landing7";
+
+
 
 function Landing() {
   return (
-    <div className='text-blue-500'>Landing</div>
+    <>
+      <Landing7 />
+    </>
   )
 }
 
