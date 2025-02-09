@@ -4,8 +4,9 @@ export default  {
 
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-    "app//.{ts,tsx}",
-    "components/**/.{ts,tsx}"
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}"
   ],
   theme: {
     extend: {
@@ -56,8 +57,46 @@ export default  {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+
+      animation: {
+        'spin-slow': 'spin 3s linear infinite',
+        'float-particle1': 'float-particle1 3s ease-in-out infinite',
+        'float-particle2': 'float-particle2 4s ease-in-out infinite',
+      },
+      keyframes: {
+        emerge: {
+          '0%': { transform: 'scale(0) rotate(45deg)', opacity: 0 },
+          '100%': { transform: 'scale(1) rotate(45deg)', opacity: 1 }
+        },
+        step1: {
+          '0%': { transform: 'translateX(20px) rotate(45deg)', opacity: 0 },
+          '100%': { transform: 'translateX(0) rotate(45deg)', opacity: 1 }
+        },
+        step2: {
+          '0%': { transform: 'translateX(20px) rotate(45deg)', opacity: 0 },
+          '100%': { transform: 'translateX(0) rotate(45deg)', opacity: 1 }
+        },
+        step3: {
+          '0%': { transform: 'translateX(20px) rotate(45deg)', opacity: 0 },
+          '100%': { transform: 'translateX(0) rotate(45deg)', opacity: 1 }
+        },
+        step4: {
+          '0%': { transform: 'translateX(20px) rotate(45deg)', opacity: 0 },
+          '100%': { transform: 'translateX(0) rotate(45deg)', opacity: 1 }
+        },
+        'float-particle1': {
+          '0%, 100%': { transform: 'translate(0, 0)' },
+          '50%': { transform: 'translate(-10px, -10px)' }
+        },
+        'float-particle2': {
+          '0%, 100%': { transform: 'translate(0, 0)' },
+          '50%': { transform: 'translate(10px, -10px)' }
+        }
+      },
     },
   },
- plugins: [],
-}
+  plugins: [require("tailwindcss-animate")],
+};
+
+
 
