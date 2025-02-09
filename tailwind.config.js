@@ -1,4 +1,3 @@
-/** @type {import('tailwindcss').Config} */
 export default  {
   darkMode: ["class"],
   content: [
@@ -14,6 +13,10 @@ export default  {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
+        customPurple: "#DD88CF",
+        secondary: "#FFD95F",
+        btnColor: "#6E8E59",
+        btnHover: "#CAE0BC",  
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
@@ -55,5 +58,6 @@ export default  {
       },
     },
   },
-
+ plugins: [],
 }
+
