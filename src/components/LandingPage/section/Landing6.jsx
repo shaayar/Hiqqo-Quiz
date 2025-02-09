@@ -7,7 +7,7 @@ import {
   PuzzleIcon,
   ChartIcon,
   ConnectIcon,
-} from "../../assets/Icons";
+} from "../../../assets/Icons";
 
 export default function Landing6() {
   const categories = [
