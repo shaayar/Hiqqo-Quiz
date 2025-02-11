@@ -19,7 +19,7 @@ function Landing1() {
         </div>
       </header>
 
-      {/* Hero Section */}
+      {/* Main Section */}
       <section className="bg-[rgb(247,199,226)] py-20 flex-grow">
         <div className="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between">
           {/* Left side with text */}
@@ -28,11 +28,7 @@ function Landing1() {
             <p className="mb-8">Build fun, engaging quizzes for yourself or your community, or explore challenges from others. Learn and grow while having fun!</p>
             <button className="bg-[rgb(8,25,72)] text-white px-6 py-3 rounded-full hover:bg-[rgba(8,25,72,0.84)]">Create your Quiz</button>
           </div>
-
-          {/* Right side with the image */}
-          <div className="flex-1">
-            <img src={img1} alt="Quiz Image" className="w-full h-auto rounded-lg" />
-          </div>
+          <img src={img1} alt="Quiz Image" className="w-120 h-120 object-cover rounded-lg" />
         </div>
       </section>
 
