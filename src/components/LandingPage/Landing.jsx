@@ -1,4 +1,5 @@
 import React from 'react';
+import Landing2 from '../section/Landing2.jsx';
 import Landing1 from '../section/Landing1.jsx'; 
 import Landing7 from "./section/Landing7";
 import TestimonialsPage from './section/TestimonialsPage'
@@ -9,6 +10,7 @@ function Landing() {
   return (
     <>
       <Landing1 />
+      <Landing2/>
       <LandingPage3/>
       <Landing5/>
       <Landing6 />
