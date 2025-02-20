@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/authRoutes");
+const quizRoutes = require("./routes/quizRoutes");
 require("dotenv").config();
 
 const app = express();
@@ -19,6 +20,7 @@ mongoose
 // Routes
 
 app.use("/api/auth", authRoutes);
+app.use("/api/quiz", quizRoutes);
 
 const port = 3000;
 
