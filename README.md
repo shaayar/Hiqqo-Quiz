@@ -38,7 +38,7 @@ This app is built using the following technologies:
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB
 - **Authentication:** JWT (JSON Web Tokens)
-- **Styling:** Tailwind CSS (or any other CSS framework)
+- **Styling:** Tailwind CSS
 
 ---
 
@@ -49,7 +49,7 @@ To get started with the Hiqqo Quiz App Platform, follow the instructions below t
 ### Prerequisites
 
 - Node.js (v14 or later)
-- MongoDB (you can use a local MongoDB instance or MongoDB Atlas for cloud storage)
+- MongoDB (local instance or MongoDB Atlas for cloud storage)
 
 ### Installation
 
@@ -58,3 +58,44 @@ To get started with the Hiqqo Quiz App Platform, follow the instructions below t
    ```bash
    git clone https://github.com/yourusername/hiqqo-quiz-app.git
    cd hiqqo-quiz-app
+   ```
+
+2. Install dependencies for both frontend and backend:
+
+   ```bash
+   npm run install-both
+   ```
+
+3. Create a `.env` file in the `server` directory and add the following environment variables:
+
+   ```env
+   MONGO_URI=
+   JWT_SECRET=
+   SMTP_HOST=
+   SMTP_PORT=
+   SMTP_MAIL=
+   SMTP_PASSWORD=
+   ```
+
+4. Start the development server:
+
+   ```bash
+   npm run dev-both
+   ```
+
+5. Open your browser and go to `http://localhost:5173` to access the frontend.
+
+6. The backend will run on `http://localhost:5000` (or any configured port in your server).
+
+---
+
+## Contributing
+
+Contributions are welcome! If you'd like to contribute, please fork the repository and create a pull request with your changes.
+
+---
+
+## License
+
+This project is licensed under the MIT License.
+
