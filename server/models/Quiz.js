@@ -19,9 +19,9 @@ const QuizSchema = new mongoose.Schema({
     isPublished: { type: Boolean, default: false },
     participants: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Participant' }],
     createdAt: { type: Date, default: Date.now },
-    description:  { type: String },
-    createdBy:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-    updatedAt: { type: Date, default: Date.now }
+    updatedAt: { type: Date, default: Date.now },
+    description: { type: String },
+    createdBy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
 });
 
 module.exports = mongoose.model("Quiz", QuizSchema);
