@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { quizCreate, updateQuiz, deleteQuiz, createQuestion, deleteQuestion , updateQuestion} = require("../controllers/quizController");
+const { quizCreate, updateQuiz, deleteQuiz, createQuestion, deleteQuestion , updateQuestion, searchQuiz} = require("../controllers/quizController");
 
 
 router.route('/quiz')
@@ -18,7 +18,9 @@ router.route('/quizzes/:quizId/questions/:questionId')
 router.route('/quizzes/:quizId/updateQuestion/:questionId')
     .put(updateQuestion);
 
-    router.route('/quizzes/:quizId/questions').post(createQuestion);
+router.route('/quizzes/:quizId/questions').post(createQuestion);
+
+router.route('/quizzes/search').post(searchQuiz);
 
 module.exports = router;
 
