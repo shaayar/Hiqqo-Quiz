@@ -12,8 +12,9 @@ const QuizSchema = new mongoose.Schema({
     questions: [{
         questionText: { type: String, required: true },
         options: [{ type: String }], // Applicable for MCQ and Boolean
-        correctAnswer: { type: String, required: true }, // For Fill in the Blank and Image-based, this can be the expected answer
-        timeLimit: { type: Number, required: true } // Time in seconds
+        correctAnswer: { type: Number, required: true }, // For Fill in the Blank and Image-based, this can be the expected answer
+        timeLimit: { type: Number, required: true }, // Time in seconds
+        questionScore:  { type: Number, required: true }
     }],
     quizCode: { type: String, unique: true },
     isPublished: { type: Boolean, default: false },

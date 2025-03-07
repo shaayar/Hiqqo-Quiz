@@ -22,7 +22,9 @@ const handleError = (error, res) => {
 const quizCreate = async (req, res) => {
     const { title, quizType } = req.body;
     try {
-        const quiz = new Quiz({ title, quizType });
+        // Generate a random 6-character alphanumeric quiz code
+        const quizCode = Math.random().toString(36).substring(2, 8).toUpperCase();
+        const quiz = new Quiz({ title, quizType, quizCode });
         await quiz.save();
         return res.status(200).json({ message: "Quiz Created successfully!" });
     } catch (error) {
@@ -88,10 +90,38 @@ const deleteQuiz = async (req, res) => {
     }
 };
 
+//searchQuiz the quiz
+const searchQuiz = async (req, res) => {
+    const { title, quizCode } = req.query;
+    try {        
+        // Construct search criteria
+        let searchCriteria = { isPublished: true };
+        if (title) {
+            searchCriteria.title = { $regex: title, $options: 'i' }; // Case-insensitive search
+        }
+        if (quizCode) {
+            searchCriteria.quizCode = quizCode;
+        }
+        
+        // Fetch quizzes based on criteria
+        const quizzes = await Quiz.find(searchCriteria);
+        
+        return res.status(200).json({ success: true, quizzes });
+    } catch (error) {
+        return res.status(500).json({ success: false, message: 'Server Error', error: error.message });
+    }
+};
+
 // Create the new question
 const createQuestion = async (req, res) => {
     const { quizId } = req.params;
-    const { questionText, options, correctAnswer, timeLimit } = req.body;
+    const { questionText, options, correctAnswer, timeLimit, questionScore } = req.body;
+     
+     // Ensure correctAnswer is a valid index
+     if (!Array.isArray(options) || correctAnswer < 0 || correctAnswer >= options.length) {
+        return res.status(400).json({ message: "Invalid correctAnswer index." });
+    }
+
     try {
         const quiz = await findQuizById(quizId);
 
@@ -100,7 +130,8 @@ const createQuestion = async (req, res) => {
             questionText,
             options,
             correctAnswer,
-            timeLimit
+            timeLimit,
+            questionScore
         };
 
         // Add the new question to the questions array
@@ -139,4 +170,4 @@ const deleteQuestion = async (req, res) => {
     }
 };
 
-module.exports = { quizCreate, updateQuiz, deleteQuiz, createQuestion, deleteQuestion ,updateQuestion};
+module.exports = { quizCreate, updateQuiz, deleteQuiz, createQuestion, deleteQuestion ,updateQuestion, searchQuiz};

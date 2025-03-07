@@ -6,7 +6,7 @@ const bycrypt = require("bcryptjs");
 // signup controller
 
 const signup = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, userName, email, password } = req.body;
   try {
     // Check if user already exists
     const existingUser = await User.findOne({ email });
@@ -15,7 +15,7 @@ const signup = async (req, res) => {
     }
 
     // Create new user
-    const user = new User({ name, email, password });
+    const user = new User({ name, userName, email, password });
     await user.save();
 
     // Generate JWT token
@@ -36,7 +36,7 @@ const login = async (req, res) => {
 
   try {
     // find user by email
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email } || {userName});
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
