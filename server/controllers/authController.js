@@ -3,10 +3,31 @@ const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const bycrypt = require("bcryptjs");
 
+const generateRandomString = (length) => {
+  const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  let result = "";
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+};
+
+const generateUsername = async (email) => {
+  const prefix = email.substring(0, 3);
+  const randomString = generateRandomString(6); 
+  const userName = `${prefix}${randomString}`;
+  
+  const existingUser = await User.findOne({ userName });
+  if (existingUser) {
+    return generateUsername(email);
+  }
+  return userName;
+};
+
 // signup controller
 
 const signup = async (req, res) => {
-  const { name, userName, email, password } = req.body;
+  const { name, email, password } = req.body;
   try {
     // Check if user already exists
     const existingUser = await User.findOne({ email });
@@ -14,6 +35,9 @@ const signup = async (req, res) => {
       return res.status(400).json({ message: "User already exists" });
     }
 
+    // Generate a unique username
+    const userName = await generateUsername(email);
+    
     // Create new user
     const user = new User({ name, userName, email, password });
     await user.save();
