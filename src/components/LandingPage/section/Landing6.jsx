@@ -79,7 +79,7 @@ export default function Landing6() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#8740f2] p-7">
+    <div className="min-h-screen p-7">
       <div className="lg:max-w-6xl mx-auto">
         <h1 className="text-4xl font-bold text-white mb-8 text-center ">
           Discover the Benefits of Our Quiz Platform

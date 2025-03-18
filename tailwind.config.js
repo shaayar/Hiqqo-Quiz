@@ -10,6 +10,9 @@ export default  {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        urbanist: ["Urbanist", "sans-serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -52,6 +55,7 @@ export default  {
           600: "#7C3AED",
         },
       },
+      
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

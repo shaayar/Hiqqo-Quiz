@@ -3,7 +3,7 @@ import React from "react";
 export const CategoryCard = ({ title, description, icon, className }) => {
   return (
     <div
-      className={`p-7 rounded-lg shadow-md ${className} flex justify-between flex-col `}
+      className={`p-7 rounded-[8px] shadow-md ${className} flex justify-between flex-col `}
     >
       <div className="flex justify-center mb-4">{icon}</div>
       <h2 className="text-2xl font-bold mb-2 text-center ">{title}</h2>{" "}

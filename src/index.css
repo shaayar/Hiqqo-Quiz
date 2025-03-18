@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root{
+    --gray-white-- : #FAFAFA;
+    --shadow-white-- : rgba(251, 250, 249, 1);
+}
+
+*{
+    @apply p-0 m-0 font-urbanist
+}
+.btn{
+    @apply bg-gradient-to-r from-[#B64870] to-[#4E0080] rounded-[8px] font-bold
+}
+
+body{
+    @apply overflow-x-hidden
+}
+.shadow-btn{
+    @apply bg-[var(--shadow-white--)] border-[#DFDFDF] border-[1.5px] rounded-[8px]
+}

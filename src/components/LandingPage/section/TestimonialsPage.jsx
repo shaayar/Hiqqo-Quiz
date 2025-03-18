@@ -144,7 +144,7 @@ function TestimonialsPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#FDE674] py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen  py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-8">
         {/* Centered heading and description */}
         <div className="text-center">
@@ -174,6 +174,7 @@ function TestimonialsPage() {
           ))}
         </div>
       </div>
+      
     </div>
   );
 }
