@@ -2,9 +2,11 @@ import "./App.css";
 import "animate.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Landing from "./components/LandingPage/Landing";
+import Login from "./components/Authentication/Login";
 import JoinPage from "./pages/Join";
 import QuizPage from "./pages/QuizPage";
 import AdminPage from "./pages/QuizCreate";
+
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
         <Route path="/join" element={<JoinPage />} />
         <Route path="/quizpage" element={<QuizPage />} />
         <Route path="/createQuiz" element={<AdminPage />} />
+        <Route path="/Login" element={<Login />} />
       </Routes>
 
       <footer className="bg-[rgb(8,25,72)] text-white p-4 mt-auto">
