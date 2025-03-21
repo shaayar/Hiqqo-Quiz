@@ -5,7 +5,6 @@ import Landing7 from "./section/Landing7";
 import TestimonialsPage from "./section/TestimonialsPage";
 import Landing5 from "./section/Landing5.jsx";
 import Landing6 from "./section/Landing6";
-
 import Navbar from "../Common/Navbar.jsx";
 function Landing() {
   return (
@@ -15,7 +14,6 @@ function Landing() {
       <Landing2 />
       {/* <Landing5 /> */}
       <Landing6 />
-
       <TestimonialsPage />
       <Landing7 />
     </>
