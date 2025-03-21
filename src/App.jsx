@@ -2,6 +2,7 @@ import "./App.css";
 import "animate.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Landing from "./components/LandingPage/Landing";
+import Signup from "./components/Authentication/Signup";
 import ForgotPassword from "./components/Authentication/ForgotPassword";
 import JoinPage from "./pages/Join";
 import QuizPage from "./pages/QuizPage";
@@ -12,6 +13,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/Signup" element={<Signup />} />
         <Route path="/ForgotPassword" element={<ForgotPassword />} />
         <Route path="/join" element={<JoinPage />} />
         <Route path="/quizpage" element={<QuizPage />} />
