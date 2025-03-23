@@ -53,19 +53,19 @@ function Login() {
       setLoading(false);
     }
   };
-  
-  useEffect(()=>{
-    if(localStorage.getItem("token")){
-      nav('/dashboard')
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      nav("/dashboard");
     }
-  })
+  });
   return (
-    <div className="relative flex items-center justify-center min-h-screen bg-gradient-to-r from-[#B64870] to-[#4E0080] bg-cover bg-center">
+    <div className="relative flex items-center justify-center bg-white min-h-screen  bg-cover bg-center">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative backdrop-blur-md p-8 shadow-lg rounded-[8px] bg-white w-full max-w-4xl mx-4 md:mx-0"
+        className="relative  p-8 shadow-lg border rounded-[8px] bg-white w-full max-w-4xl mx-4 md:mx-0"
       >
         <div className="flex flex-col md:flex-row">
           <motion.div

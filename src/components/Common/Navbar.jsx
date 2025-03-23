@@ -1,9 +1,10 @@
 import gsap from "gsap";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 function Navbar() {
   const headerRef = useRef(null);
+  const [token, setToken] = useState(localStorage.getItem("token"));
   useEffect(() => {
     gsap.fromTo(
       headerRef.current,
@@ -11,6 +12,7 @@ function Navbar() {
       { y: 0, duration: 0.8, ease: "power2.out" } // Final state
     );
   }, []);
+
   return (
     <header
       ref={headerRef}
@@ -50,12 +52,18 @@ function Navbar() {
         </nav>
         <div className="flex items-center gap-4 text-center">
           <Link className="btn p-2 text-white w-[100px]" to={"/login"}>
-            Login
+            {token ? "Dashboard" : "Login"}
           </Link>
-
-          <Link className="btn p-2 text-center text-white w-[100px]" to={"/signup"}>
-            Sign up
-          </Link>
+          {!token ? (
+            <Link
+              className="btn p-2 text-center text-white w-[100px]"
+              to={"/signup"}
+            >
+              Sign up
+            </Link>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </header>
