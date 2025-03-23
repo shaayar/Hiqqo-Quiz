@@ -4,7 +4,8 @@ const nodemailer = require("nodemailer");
 const bycrypt = require("bcryptjs");
 
 const generateRandomString = (length) => {
-  const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  const chars =
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   let result = "";
   for (let i = 0; i < length; i++) {
     result += chars.charAt(Math.floor(Math.random() * chars.length));
@@ -14,13 +15,16 @@ const generateRandomString = (length) => {
 
 const generateUsername = async (email) => {
   const prefix = email.substring(0, 3);
-  const randomString = generateRandomString(6); 
-  const userName = `${prefix}${randomString}`;
-  
+  const timestamp = Date.now();
+  const userName = `${prefix}${timestamp}`;
+
   const existingUser = await User.findOne({ userName });
   if (existingUser) {
-    return generateUsername(email);
+    const randomString = generateRandomString(4);
+    const newUserName = `${prefix}${timestamp}${randomString}`;
+    return newUserName;
   }
+
   return userName;
 };
 
@@ -29,20 +33,15 @@ const generateUsername = async (email) => {
 const signup = async (req, res) => {
   const { name, email, password } = req.body;
   try {
-    // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
     }
-
-    // Generate a unique username
     const userName = await generateUsername(email);
-    
-    // Create new user
+
     const user = new User({ name, userName, email, password });
     await user.save();
 
-    // Generate JWT token
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
@@ -60,7 +59,7 @@ const login = async (req, res) => {
 
   try {
     // find user by email
-    const user = await User.findOne({ email } || {userName});
+    const user = await User.findOne({ email } || { userName });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -81,7 +80,7 @@ const login = async (req, res) => {
 
 // forgotpass controller
 
-const forgotpass = async (req, res) =>{
+const forgotpass = async (req, res) => {
   const { email } = req.body;
   try {
     const generateOtp = Math.floor(Math.random() * 90000); // 4 digit OTP
@@ -104,42 +103,42 @@ const forgotpass = async (req, res) =>{
       html: `<b>OTP is: <i>${generateOtp}</i></b>`, // html body
     });
     console.log(info.messageId);
-    if(info.messageId){
+    if (info.messageId) {
       let user = await User.findOneAndUpdate(
-        {email},
-        {otp: generateOtp},
-        {new: true}
+        { email },
+        { otp: generateOtp },
+        { new: true }
       );
 
-      if(!user){
-        return res.status(400).json({message: "User does not exist"});
+      if (!user) {
+        return res.status(400).json({ message: "User does not exist" });
       }
     }
-    return res.status(200).json({message:"OTP sent successfully!"});
+    return res.status(200).json({ message: "OTP sent successfully!" });
   } catch (error) {
-    return res.status(500).json({message: error.message});
+    return res.status(500).json({ message: error.message });
   }
 };
 
-// verify otp and set new password 
-const verifyotp = async (req, res) =>{
-  const { otp, newpassword} = req.body;
-  
+// verify otp and set new password
+const verifyotp = async (req, res) => {
+  const { otp, newpassword } = req.body;
+
   try {
     let user = await User.findOne({ otp });
-    if(!user){
-      return res.status(400).json({message:"Invalid OTP"});
+    if (!user) {
+      return res.status(400).json({ message: "Invalid OTP" });
     }
 
     const securePassword = await bycrypt.hash(newpassword, 10);
     user = await User.findOneAndUpdate(
-      {otp},
-      {password: securePassword, otp:0},
-      {new:true}
+      { otp },
+      { password: securePassword, otp: 0 },
+      { new: true }
     );
-    return res.status(200).json({message: "Password updated successfully!"});
+    return res.status(200).json({ message: "Password updated successfully!" });
   } catch (error) {
-    return res.status(500).json({message: error.message});
+    return res.status(500).json({ message: error.message });
   }
 };
 module.exports = { signup, login, forgotpass, verifyotp };

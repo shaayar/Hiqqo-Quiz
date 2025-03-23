@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import axios from "axios"; // Import axios
+import api from "../../utils/axios";
 
 function Signup() {
   const [username, setUsername] = useState("");
@@ -8,7 +10,8 @@ function Signup() {
   const [error, setError] = useState("");
 
   // Password validation regex (min 8 chars, 1 uppercase, 1 special character, 1 number)
-  const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  const passwordRegex =
+    /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,25 +33,23 @@ function Signup() {
       return;
     }
 
-    setError("");  // Clear error message if validation is successful
+    setError(""); // Clear error message if validation is successful
 
     try {
-      const response = await fetch("http://localhost:3000/api/auth/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, email, password }),
-      });
+      const response = await api.post(
+        "/auth/signup", 
+        { name: username, email, password },
+        { headers: { "Content-Type": "application/json" } }
+      );
 
-      const data = await response.json();
-
-      if (response.ok) {
+      if (response.status === 200) {
         // Show success message
         alert("Signup successful! Redirecting to login...");
-        
+
         // Redirect to login page
-        window.location.href = "/login";  // This will redirect to the login page
+        window.location.href = "/login"; // This will redirect to the login page
       } else {
-        setError(data.message || "Signup failed. Please try again.");
+        setError(response.data.message || "Signup failed. Please try again.");
       }
     } catch (error) {
       console.error("Signup error:", error);
@@ -85,16 +86,21 @@ function Signup() {
           >
             <h2 className="text-2xl mb-4 text-white font-bold">Sign Up</h2>
 
-            <motion.label className="block text-white font-bold mb-1">Username</motion.label>
+            <motion.label className="block text-white font-bold mb-1">
+              Name
+            </motion.label>
             <motion.input
               type="text"
               className="w-full p-2 border border-gray-300 rounded-lg text-black placeholder-gray-500 focus:ring-2 focus:ring-blue-400 mb-4"
-              placeholder="Enter your username"
+              placeholder="Enter your name"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
 
-            <motion.label className="block text-white font-bold mb-1">Email</motion.label>
+
+            <motion.label className="block text-white font-bold mb-1">
+              Email
+            </motion.label>
             <motion.input
               type="email"
               className="w-full p-2 border border-gray-300 rounded-lg text-black placeholder-gray-500 focus:ring-2 focus:ring-blue-400 mb-4"
@@ -103,7 +109,9 @@ function Signup() {
               onChange={(e) => setEmail(e.target.value)}
             />
 
-            <motion.label className="block text-white font-bold mb-1">Password</motion.label>
+            <motion.label className="block text-white font-bold mb-1">
+              Password
+            </motion.label>
             <motion.input
               type="password"
               className="w-full p-2 border border-gray-300 rounded-lg text-black placeholder-gray-500 focus:ring-2 focus:ring-blue-400 mb-4"
@@ -112,7 +120,11 @@ function Signup() {
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            {error && <div className="mb-4 p-2 bg-red-100 border border-red-400 text-red-700 rounded">{error}</div>}
+            {error && (
+              <div className="mb-4 p-2 bg-red-100 border border-red-400 text-red-700 rounded">
+                {error}
+              </div>
+            )}
 
             <motion.button
               className="w-full bg-purple-600 text-white p-2 rounded-lg hover:bg-purple-700 transition font-bold"
@@ -123,7 +135,10 @@ function Signup() {
 
             <motion.p className="text-sm text-white mt-4 text-center font-bold">
               Already have an account?{" "}
-              <a href="./Login" className="text-purple-400 font-bold hover:text-purple-300">
+              <a
+                href="./login"
+                className="text-purple-400 font-bold hover:text-purple-300"
+              >
                 Login here
               </a>
             </motion.p>

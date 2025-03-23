@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import axios from 'axios'; // Import axios
+import api from '../../utils/axios';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
@@ -23,18 +25,17 @@ const ForgotPassword = () => {
       setLoading(true);
 
       try {
-        const response = await fetch('http://localhost:3000/api/auth/forgotpass', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email }),
-        });
-        const data = await response.json();
+        const response = await api.post(
+          '/auth/forgotpass', 
+          { email },
+          { headers: { 'Content-Type': 'application/json' } }
+        );
 
-        if (response.ok) {
+        if (response.status === 200) {
           setSuccessMessage('OTP sent to your email. Enter it below to reset your password.');
           setOtpSent(true);
         } else {
-          setError(data.message || 'Something went wrong. Please try again.');
+          setError(response.data.message || 'Something went wrong. Please try again.');
         }
       } catch (err) {
         setError('There was an error connecting to the server. Please try again later.');
@@ -100,7 +101,7 @@ const ForgotPassword = () => {
           className="text-sm text-white mt-4 text-center font-bold"
         >
           Remember your password?{' '}
-          <a href="/Login" className="text-pink-400 font-bold hover:underline">
+          <a href="/login" className="text-pink-400 font-bold hover:underline">
             Back to Login
           </a>
         </motion.p>

@@ -11,16 +11,17 @@ import AdminPage from "./pages/QuizCreate";
 
 
 function App() {
+  
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/Signup" element={<Signup />} />
-        <Route path="/ForgotPassword" element={<ForgotPassword />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/forgot-pass" element={<ForgotPassword />} />
         <Route path="/join" element={<JoinPage />} />
         <Route path="/quizpage" element={<QuizPage />} />
         <Route path="/createQuiz" element={<AdminPage />} />
-        <Route path="/Login" element={<Login />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
 
       <footer className="bg-[rgb(8,25,72)] text-white p-4 mt-auto">

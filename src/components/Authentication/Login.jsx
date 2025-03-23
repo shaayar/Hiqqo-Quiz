@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import axios from "axios"; // Import axios
+import api from "../../utils/axios";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -26,22 +28,21 @@ function Login() {
       return;
     }
 
-    const apiBaseUrl = process.env.REACT_APP_API_BASE_URL; // Dynamic base URL
-
     try {
-      const response = await fetch(`${apiBaseUrl}/auth/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await api.post(
+        "/auth/login",
+        { email, password },
+        { headers: { "Content-Type": "application/json" } }
+      );
 
-      const data = await response.json();
-      
-      if (response.ok) {
+      if (response.status === 200) {
         alert("Login successful! Redirecting to dashboard...");
         window.location.href = "/dashboard";
       } else {
-        setError(data.message || "Invalid email or password. Please try again.");
+        setError(
+          response.data.message ||
+            "Invalid email or password. Please try again."
+        );
       }
     } catch (error) {
       console.error("Login error:", error);
@@ -102,7 +103,10 @@ function Login() {
               </div>
 
               <div className="mb-6">
-                <label htmlFor="password" className="block text-black font-medium">
+                <label
+                  htmlFor="password"
+                  className="block text-black font-medium"
+                >
                   Password
                 </label>
                 <input
@@ -120,7 +124,11 @@ function Login() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.6, duration: 0.5 }}
-                className={`w-full ${loading ? "bg-gray-500 cursor-not-allowed" : "bg-pink-500 hover:bg-pink-700"} text-white p-2 rounded-md transition font-bold`}
+                className={`w-full ${
+                  loading
+                    ? "bg-gray-500 cursor-not-allowed"
+                    : "bg-pink-500 hover:bg-pink-700"
+                } text-white p-2 rounded-md transition font-bold`}
                 disabled={loading}
               >
                 {loading ? "Logging in..." : "Login"}

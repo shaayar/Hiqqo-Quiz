@@ -44,7 +44,7 @@ function Navbar() {
           </ul>
         </nav>
         <button className="btn p-2 text-white w-[100px]">
-          <a href="/Signup">Sign up</a>
+          <a href="/signup">Sign up</a>
         </button>
       </div>
     </header>
