@@ -9,10 +9,8 @@ import Navbar from "../Common/Navbar.jsx";
 function Landing() {
   return (
     <>
-      <Navbar />
       <Landing1 />
       <Landing2 />
-      {/* <Landing5 /> */}
       <Landing6 />
       <TestimonialsPage />
       <Landing7 />

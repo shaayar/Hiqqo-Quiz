@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios"; // Import axios
 import api from "../../utils/axios";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -10,6 +11,7 @@ function Login() {
   const [loading, setLoading] = useState(false);
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const nav = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,7 +39,7 @@ function Login() {
 
       if (response.status === 200) {
         alert("Login successful! Redirecting to dashboard...");
-        window.location.href = "/dashboard";
+        nav("/dashboard");
       } else {
         setError(
           response.data.message ||
@@ -51,15 +53,19 @@ function Login() {
       setLoading(false);
     }
   };
-
+  
+  useEffect(()=>{
+    if(localStorage.getItem("token")){
+      nav('/dashboard')
+    }
+  })
   return (
     <div className="relative flex items-center justify-center min-h-screen bg-gradient-to-r from-[#B64870] to-[#4E0080] bg-cover bg-center">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative backdrop-blur-md p-8 shadow-lg rounded-md w-full max-w-4xl mx-4 md:mx-0"
-        style={{ backgroundColor: "rgb(247, 199, 226)" }}
+        className="relative backdrop-blur-md p-8 shadow-lg rounded-[8px] bg-white w-full max-w-4xl mx-4 md:mx-0"
       >
         <div className="flex flex-col md:flex-row">
           <motion.div
@@ -69,7 +75,7 @@ function Login() {
             className="md:w-1/2 text-center md:text-left p-6 text-black font-bold"
           >
             <h1 className="text-3xl mb-4">Welcome Back!</h1>
-            <p className="text-sm text-gray-700">
+            <p className="text-sm text-gray-400">
               Login to your account and continue your journey with us.
             </p>
           </motion.div>
@@ -94,7 +100,7 @@ function Login() {
                 <input
                   type="email"
                   id="email"
-                  className="w-full mt-2 px-4 py-2 border border-black bg-white/10 rounded-md text-black placeholder-black focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full mt-2 px-4 py-2 border border-black bg-white/10 rounded-[8px] text-black placeholder-black focus:outline-none focus:ring-1 focus:ring-pink-500"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -112,7 +118,7 @@ function Login() {
                 <input
                   type="password"
                   id="password"
-                  className="w-full mt-2 px-4 py-2 border border-black bg-white/10 rounded-md text-black placeholder-black focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full mt-2 px-4 py-2 border border-black bg-white/10 rounded-[8px] text-black placeholder-black focus:outline-none focus:ring-1 focus:ring-pink-500"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -124,15 +130,30 @@ function Login() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.6, duration: 0.5 }}
-                className={`w-full ${
-                  loading
-                    ? "bg-gray-500 cursor-not-allowed"
-                    : "bg-pink-500 hover:bg-pink-700"
-                } text-white p-2 rounded-md transition font-bold`}
+                className={`w-full btn h-[40px] text-white `}
                 disabled={loading}
               >
                 {loading ? "Logging in..." : "Login"}
               </motion.button>
+              <motion.p className="text-sm text-black mt-4 text-center font-bold">
+                Forgot Password?{" "}
+                <Link
+                  to={"/forgot-pass"}
+                  className="text-purple-400 font-bold hover:text-purple-300"
+                >
+                  Click Here
+                </Link>
+              </motion.p>
+
+              <motion.p className="text-sm text-black mt-4 text-center font-bold">
+                New User?{" "}
+                <Link
+                  to={"/signup"}
+                  className="text-purple-400 font-bold hover:text-purple-300"
+                >
+                  Signup here
+                </Link>
+              </motion.p>
             </form>
           </motion.div>
         </div>

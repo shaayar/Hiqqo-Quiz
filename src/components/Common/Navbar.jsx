@@ -14,15 +14,15 @@ function Navbar() {
   return (
     <header
       ref={headerRef}
-      className="bg-white text-gray-800 p-4 w-screen h-22 flex items-center justify-center border-b-2"
+      className="bg-white z-50 top-0 text-gray-800 fixed  p-4 w-screen h-22 flex items-center justify-center border-b-2"
     >
       <div className="w-full flex justify-between items-center ">
-        <div className="flex gap-4 items-center justify-start">
+        <Link to={'/'} className="flex gap-4 items-center justify-start">
           <img src="./Navbar/logo.png" className="w-[50px] animate-bounce" alt="" srcset="" />
           <h1 className="text-[40px] font-bold">
             Hi<span className="text-gray-200">qq</span>o
           </h1>
-        </div>
+        </Link>
 
         <nav className="w-3/4 justify-center flex text-[22px] font-bold">
           <ul className="flex space-x-4">
@@ -43,9 +43,15 @@ function Navbar() {
             </li> */}
           </ul>
         </nav>
+        <div className="flex items-center gap-4">
         <button className="btn p-2 text-white w-[100px]">
-          <a href="/signup">Sign up</a>
+          <Link to={"/login"}>Login</Link>
         </button>
+        <button className="btn p-2 text-white w-[100px]">
+          <Link to={"/signup"}>Sign up</Link>
+        </button>
+        </div>
+    
       </div>
     </header>
   );

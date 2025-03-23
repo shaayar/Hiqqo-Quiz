@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios'; // Import axios
 import api from '../../utils/axios';
+import { Link } from 'react-router-dom';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
@@ -51,13 +52,13 @@ const ForgotPassword = () => {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="relative backdrop-blur-md p-8 shadow-lg rounded-md max-w-md w-full mx-4 md:mx-0 bg-white/20"
+        className="relative backdrop-blur-md p-8 shadow-lg rounded-[8px] max-w-md w-full mx-4 md:mx-0 bg-white"
       >
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6, ease: 'easeOut' }}
-          className="text-2xl mb-6 text-white font-bold text-center"
+          className="text-2xl mb-6 text-black font-bold text-center"
         >
           Forgot Password
         </motion.h2>
@@ -68,13 +69,13 @@ const ForgotPassword = () => {
         {!otpSent && (
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label className="block text-white text-sm font-bold mb-2" htmlFor="email">
+              <label className="block text-gray-400 text-sm font-bold mb-2" htmlFor="email">
                 Enter your email to reset your password.
               </label>
               <input
                 type="email"
                 id="email"
-                className="w-full mt-2 px-4 py-2 border border-white bg-white/10 rounded-md text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full mt-2 px-4 py-2 border border-black bg-white/10 rounded-[8px] text-white placeholder-gray-300 focus:outline-none focus:ring-1 focus:ring-pink-500"
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -86,7 +87,7 @@ const ForgotPassword = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.6, duration: 0.5 }}
               type="submit"
-              className="w-full bg-[rgba(255,89,203,0.8)] text-white p-2 rounded-md hover:bg-[rgba(246,59,187,0.8)] transition font-bold"
+              className="w-full btn bg-[rgba(255,89,203,0.8)] text-white p-2 rounded-md hover:bg-[rgba(246,59,187,0.8)] transition font-bold"
               disabled={loading}
             >
               {loading ? 'Sending...' : 'Submit'}
@@ -98,12 +99,12 @@ const ForgotPassword = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.5 }}
-          className="text-sm text-white mt-4 text-center font-bold"
+          className="text-sm text-black mt-4 text-center font-bold"
         >
           Remember your password?{' '}
-          <a href="/login" className="text-pink-400 font-bold hover:underline">
+          <Link to={"/login"} className="text-pink-400 font-bold hover:underline">
             Back to Login
-          </a>
+          </Link>
         </motion.p>
       </motion.div>
     </div>
