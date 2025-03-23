@@ -42,9 +42,10 @@ function Signup() {
         { headers: { "Content-Type": "application/json" } }
       );
 
-      if (response.status === 200) {
+      if (response.status === 201) {
         // Show success message
         alert("Signup successful! Redirecting to login...");
+        localStorage.setItem('token',response.data.token)
 
         // Redirect to login page
         window.location.href = "/login"; // This will redirect to the login page
