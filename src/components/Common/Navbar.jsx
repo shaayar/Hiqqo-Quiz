@@ -17,8 +17,13 @@ function Navbar() {
       className="bg-white z-50 top-0 text-gray-800 fixed  p-4 w-screen h-22 flex items-center justify-center border-b-2"
     >
       <div className="w-full flex justify-between items-center ">
-        <Link to={'/'} className="flex gap-4 items-center justify-start">
-          <img src="./Navbar/logo.png" className="w-[50px] animate-bounce" alt="" srcset="" />
+        <Link to={"/"} className="flex gap-4 items-center justify-start">
+          <img
+            src="./Navbar/logo.png"
+            className="w-[50px] animate-bounce"
+            alt=""
+            srcset=""
+          />
           <h1 className="text-[40px] font-bold">
             Hi<span className="text-gray-200">qq</span>o
           </h1>
@@ -43,15 +48,15 @@ function Navbar() {
             </li> */}
           </ul>
         </nav>
-        <div className="flex items-center gap-4">
-        <button className="btn p-2 text-white w-[100px]">
-          <Link to={"/login"}>Login</Link>
-        </button>
-        <button className="btn p-2 text-white w-[100px]">
-          <Link to={"/signup"}>Sign up</Link>
-        </button>
+        <div className="flex items-center gap-4 text-center">
+          <Link className="btn p-2 text-white w-[100px]" to={"/login"}>
+            Login
+          </Link>
+
+          <Link className="btn p-2 text-center text-white w-[100px]" to={"/signup"}>
+            Sign up
+          </Link>
         </div>
-    
       </div>
     </header>
   );
