@@ -8,22 +8,29 @@ import ForgotPassword from "./components/Authentication/ForgotPassword";
 import JoinPage from "./pages/Join";
 import QuizPage from "./pages/QuizPage";
 import AdminPage from "./pages/QuizCreate";
-
+import Error from "./components/Common/Error";
+import Navbar from "./components/Common/Navbar";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/Signup" element={<Signup />} />
-        <Route path="/ForgotPassword" element={<ForgotPassword />} />
-        <Route path="/join" element={<JoinPage />} />
-        <Route path="/quizpage" element={<QuizPage />} />
-        <Route path="/createQuiz" element={<AdminPage />} />
-        <Route path="/Login" element={<Login />} />
-      </Routes>
+      <Navbar />
+      <div className="my-20">
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/forgot-pass" element={<ForgotPassword />} />
+          <Route path="/join" element={<JoinPage />} />
+          <Route path="/quizpage" element={<QuizPage />} />
+          <Route path="/createQuiz" element={<AdminPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </div>
 
-      <footer className="bg-[rgb(8,25,72)] text-white p-4 mt-auto">
+      <footer className="bg-[rgb(8,25,72)] text-white  p-4 mt-auto">
         <div className="container mx-auto text-center">
           <p>&copy; 2025 QuizMaster. All rights reserved.</p>
         </div>
