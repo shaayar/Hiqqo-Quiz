@@ -1,9 +1,12 @@
 import gsap from "gsap";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import Header from "./Header";
+import { DataProvider } from "../../App";
 
 function Navbar() {
   const headerRef = useRef(null);
+  const {page,setPage} = useContext(DataProvider)
   const [token, setToken] = useState(localStorage.getItem("token"));
   useEffect(() => {
     gsap.fromTo(
@@ -30,8 +33,12 @@ function Navbar() {
             Hi<span className="text-gray-200">qq</span>o
           </h1>
         </Link>
+        {
+          page == 1 &&  <Header/>
+        }
 
-        <nav className="w-3/4 justify-center flex text-[22px] font-bold">
+        {
+          page!=1 &&  <nav className="w-3/4 justify-center flex text-[22px] font-bold">
           <ul className="flex space-x-4">
             <li>
               <Link className="hover:border-b-4 transition-all duration-75">
@@ -50,6 +57,9 @@ function Navbar() {
             </li> */}
           </ul>
         </nav>
+        }
+
+       
         <div className="flex items-center gap-4 text-center">
           <Link className="btn p-2 text-white w-[100px]" to={"/login"}>
             {token ? "Dashboard" : "Login"}

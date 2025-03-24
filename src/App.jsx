@@ -11,9 +11,16 @@ import AdminPage from "./pages/QuizCreate";
 import Error from "./components/Common/Error";
 import Navbar from "./components/Common/Navbar";
 import Dashboard from "./components/Dashboard/Dashboard";
+import { createContext, useState } from "react";
+
+export const DataProvider = createContext() 
 
 function App() {
+
+  const [page,setPage] = useState(0)
+
   return (
+    <DataProvider.Provider value={{page,setPage}}>
     <BrowserRouter>
       <Navbar />
       <div className="my-20">
@@ -36,6 +43,7 @@ function App() {
         </div>
       </footer>
     </BrowserRouter>
+    </DataProvider.Provider>
   );
 }
 

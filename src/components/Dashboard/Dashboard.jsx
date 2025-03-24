@@ -1,13 +1,19 @@
 import React from "react";
-import QuizPerformanceList from "./Report";
+import Sidebar from "../Common/Sidebar";
 import App from "./SelectQuizType";
-import QuizList from "./myLibrary";
 
 function Dashboard() {
-  return <div className="h-screen w-screen">
-   <QuizList/>
+  return (
+    <div className="flex">
+      <Sidebar />
+      <div className="ml-64 w-full">
+        <div className="p-5">
+        <App/>
+        </div>
+      </div>
+    </div>
+  );
 
-  </div>;
 }
 
 export default Dashboard;
