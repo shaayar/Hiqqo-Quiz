@@ -20,7 +20,7 @@ const QuizTypeModal = ({ isOpen, onClose }) => {
   
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="fixed w-screen z-50 h-screen  inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white p-8 rounded-lg shadow-lg w-[500px]">
         <h2 className="text-xl font-semibold">Enter quiz title</h2>
         <input
