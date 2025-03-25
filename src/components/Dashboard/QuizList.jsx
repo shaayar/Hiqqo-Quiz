@@ -38,7 +38,7 @@ const quizzes = [
   },
 ]; 
 
-const QuizList = () => {
+const MYlibrary = () => {
   const [activeTab, setActiveTab] = useState("Published");
 
   return (
@@ -95,4 +95,4 @@ const QuizList = () => {
   );
 };
 
-export default QuizList;
+export default MYlibrary;
