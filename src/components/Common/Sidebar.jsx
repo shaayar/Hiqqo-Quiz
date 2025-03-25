@@ -1,13 +1,12 @@
 import React from "react";
 import { FaBook, FaChartBar, FaSignOutAlt, FaPlus } from "react-icons/fa";
+import QuizTypeModal from "../Dashboard/SelectQuizType";
 
-const Sidebar = () => {
+const Sidebar = ({ onCreateQuiz })  => {
   return (
     <aside className="w-64 bg-gray-100 h-screen p-5 flex flex-col justify-between fixed">
       <div>
-        <h2 className="text-2xl font-bold text-gray-800">Hiqqo</h2>
-
-        <button className="flex items-center justify-center bg-indigo-600 text-white w-full py-2 mt-5 rounded-md">
+        <button className="flex items-center justify-center bg-indigo-600 text-white w-full py-2 mt-5 rounded-md"  onClick={onCreateQuiz}>
           <FaPlus className="mr-2" /> Create a quiz
         </button>
 
@@ -22,7 +21,6 @@ const Sidebar = () => {
           </ul>
         </nav>
       </div>
-
       <button className="flex items-center text-red-600 p-3">
         <FaSignOutAlt className="mr-3" /> Logout
       </button>
