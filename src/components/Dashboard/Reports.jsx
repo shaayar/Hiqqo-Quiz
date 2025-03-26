@@ -8,7 +8,7 @@ const quizzes = new Array(6).fill().map(() => ({
   progress: 48,
 }));
 
-const QuizPerformanceList = () => {
+const Reports = () => {
   return (
     <div className="max-w-4xl mx-auto p-4">
       {/* Filters & Sort Buttons */}
@@ -54,4 +54,4 @@ const QuizPerformanceList = () => {
   );
 };
 
-export default QuizPerformanceList;
+export default Reports;
