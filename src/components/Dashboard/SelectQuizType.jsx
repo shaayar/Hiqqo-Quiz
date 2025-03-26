@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import api from "../../utils/axios";
 
 const QuizTypeModal = ({ isOpen, onClose }) => {
-  const [selectedQuizType, setSelectedQuizType] = useState("multiple-choice");
+  const [selectedQuizType, setSelectedQuizType] = useState("MCQ");
   const [quizTitle, setQuizTitle] = useState("");
   const [error, setError] = useState("");
 
@@ -9,12 +10,30 @@ const QuizTypeModal = ({ isOpen, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      // todo:write logic for sent request to quiz create API
-    } catch (error) {
-      console.log("errro whle login", error);
-      setError(error.message);
-    }
+    if (!quizTitle || !selectedQuizType) {
+        setError("Please fill out all fields.");
+        return;
+      }
+      setError(""); // Clear error message if validation is successful
+      try {
+        const response = await api.post(
+          "/api/quiz/create-quiz",
+          { title: quizTitle, quizType:selectedQuizType },
+          { headers: { "Content-Type": "application/json" } }
+        );
+  
+        if (response.status === 201) {
+          // Show success message
+          alert("Quiz created successful!");
+          setQuizTitle("");
+          // Redirect to next page
+        } else {
+          setError(response.data.message || "Failed to create quiz. Please try again.");
+        } 
+      } catch (error) {
+        console.log("errro in quiz creation", error);
+        setError(error.message);
+      }
   };
 
   
@@ -38,9 +57,9 @@ const QuizTypeModal = ({ isOpen, onClose }) => {
         <div className="flex mt-4 space-x-4">
           <div
             className={`w-1/2 p-4 border rounded-lg cursor-pointer ${
-              selectedQuizType === "multiple-choice" ? "border-black" : ""
+              selectedQuizType === "MCQ" ? "border-black" : ""
             }`}
-            onClick={() => setSelectedQuizType("multiple-choice")}
+            onClick={() => setSelectedQuizType("MCQ")}
           >
             <div className="w-full h-24 bg-gray-200 rounded"></div>
             <div className="mt-2 flex justify-between items-center">
@@ -48,7 +67,7 @@ const QuizTypeModal = ({ isOpen, onClose }) => {
               <input
                 type="radio"
                 name="quizType"
-                checked={selectedQuizType === "multiple-choice"}
+                checked={selectedQuizType === "MCQ"}
                 className="accent-black"
                 readOnly
               />
@@ -59,9 +78,9 @@ const QuizTypeModal = ({ isOpen, onClose }) => {
           </div>
           <div
             className={`w-1/2 p-4 border rounded-lg cursor-pointer ${
-              selectedQuizType === "fill-in-the-blanks" ? "border-black" : ""
+              selectedQuizType === "Fill in the Blank" ? "border-black" : ""
             }`}
-            onClick={() => setSelectedQuizType("fill-in-the-blanks")}
+            onClick={() => setSelectedQuizType("Fill in the Blank")}
           >
             <div className="w-full h-24 bg-gray-200 rounded"></div>
             <div className="mt-2 flex justify-between items-center">
@@ -69,7 +88,7 @@ const QuizTypeModal = ({ isOpen, onClose }) => {
               <input
                 type="radio"
                 name="quizType"
-                checked={selectedQuizType === "fill-in-the-blanks"}
+                checked={selectedQuizType === "Fill in the Blank"}
                 className="accent-black"
                 readOnly
               />
