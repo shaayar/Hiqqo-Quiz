@@ -7,7 +7,7 @@ import Signup from "./components/Authentication/Signup";
 import ForgotPassword from "./components/Authentication/ForgotPassword";
 import JoinPage from "./pages/Join";
 import QuizPage from "./pages/QuizPage";
-import AdminPage from "./pages/QuizCreate";
+import QuizCreate from "./pages/QuizCreate";
 import Error from "./components/Common/Error";
 import Navbar from "./components/Common/Navbar";
 import Dashboard from "./components/Dashboard/Dashboard";
@@ -30,7 +30,7 @@ function App() {
           <Route path="/forgot-pass" element={<ForgotPassword />} />
           <Route path="/join" element={<JoinPage />} />
           <Route path="/quizpage" element={<QuizPage />} />
-          <Route path="/createQuiz" element={<AdminPage />} />
+          <Route path="/createQuiz" element={<QuizCreate />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<Error />} />
