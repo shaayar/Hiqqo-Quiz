@@ -16,15 +16,7 @@ function Navbar() {
       { y: 0, duration: 0.8, ease: "power2.out" } // Final state
     );
   }, []);
-
-  useEffect(() => {
-    if (location.pathname == "/dashboard") {
-      setPage(1);
-    } else {
-      setPage(0);
-    }
-  });
-
+ 
   return (
     <header
       ref={headerRef}
@@ -42,9 +34,9 @@ function Navbar() {
             Hi<span className="text-gray-200">qq</span>o
           </h1>
         </Link>
-        {page == 1 && <Header />}
+        {token && location.pathname != "/" && <Header />}
 
-        {page != 1 && (
+        {location.pathname == "/" && (
           <nav className="w-3/4 justify-center flex text-[22px] font-bold">
             <ul className="flex space-x-4">
               <li>
