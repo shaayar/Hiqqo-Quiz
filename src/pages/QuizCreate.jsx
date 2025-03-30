@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 
 const QuizCreate = () => {
@@ -148,7 +149,7 @@ const QuizCreate = () => {
             >
               +
             </button>
-            </div>
+          </div>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6 mt-6">
@@ -229,8 +230,7 @@ const QuizCreate = () => {
             )}
           </div>
         </form>
-        
-        {/* Quiz Code Display */}
+
         {quizCode && (
           <div className="mt-8 text-center text-lg font-semibold">
             <p>Quiz Created! Use this code to access the quiz:</p>
@@ -241,5 +241,6 @@ const QuizCreate = () => {
     </div>
   );
 };
+
 
 export default QuizCreate;
