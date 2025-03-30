@@ -3,13 +3,10 @@ import { FaSearch, FaUserCircle } from "react-icons/fa";
 
 const Header = () => {
   return (
-    <header className="bg-white shadow-sm border-b border-gray-100 p-4 w-[832px] mx-auto rounded-lg">
-      <div className="flex items-center justify-between">
-        {/* Logo or Title */}
-        <h2 className="text-2xl font-bold text-indigo-800">My Library</h2>
-
+    <header className="bg-white  flex justify-center border-gray-100 p-4 w-1/2 mx-auto rounded-lg">
+      <div className="flex items-center gap-2 justify-between w-1/2">
         {/* Search Bar - Icon only button with rounded input */}
-        <div className="flex items-center space-x-2 w-2/5">
+        <div className="flex items-center space-x-2 w-full">
           <div className="relative w-full">
             <input
               type="text"
@@ -20,17 +17,19 @@ const Header = () => {
             />
             <FaSearch className="absolute left-3 top-3 text-gray-400" />
           </div>
-          <button className="bg-indigo-600 text-white p-3 rounded-full hover:bg-indigo-700 
-                            transition-colors shadow-sm flex items-center justify-center">
+          <button
+            className="bg-indigo-600 text-white p-3 rounded-full hover:bg-indigo-700 
+                            transition-colors shadow-sm flex items-center justify-center"
+          >
             <FaSearch />
           </button>
         </div>
 
         {/* User Profile - Simplified */}
-        <div className="flex items-center space-x-3 cursor-pointer">
+        {/* <div className="flex items-center space-x-3 cursor-pointer">
           <FaUserCircle className="text-3xl text-indigo-600 hover:text-indigo-700 transition-colors" />
           <span className="font-medium text-gray-800">Jaya Kishori</span>
-        </div>
+        </div> */}
       </div>
     </header>
   );

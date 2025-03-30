@@ -1,13 +1,15 @@
 import React, { useContext } from "react";
 import { FaBook, FaChartBar, FaSignOutAlt, FaPlus } from "react-icons/fa";
 import { DataProvider } from "../../App";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = ({ onCreateQuiz })  => {
   const {page,setPage} = useContext(DataProvider)
+  const nav = useNavigate()
   return (
-    <aside className="w-64 bg-gray-100 h-screen p-5 flex flex-col justify-between fixed">
+    <aside className="w-64 bg-gray-100 h-[95%] p-5 flex flex-col justify-between fixed">
       <div>
-        <button onClick = {()=>onCreateQuiz(true)} className="flex items-center justify-center bg-indigo-600 text-white w-full py-2 mt-5 rounded-md">
+        <button onClick = {()=>onCreateQuiz(true)} className="flex btn items-center justify-center bg-indigo-600 text-white w-full py-2 mt-5 rounded-md">
           <FaPlus className="mr-2" /> Create a quiz
         </button>
 
@@ -22,7 +24,10 @@ const Sidebar = ({ onCreateQuiz })  => {
           </ul>
         </nav>
       </div>
-      <button className="flex items-center text-red-600 p-3">
+      <button onClick={()=>{
+        localStorage.removeItem("token")
+       nav("/login")
+      }} className="flex items-center text-red-600 p-3">
         <FaSignOutAlt className="mr-3" /> Logout
       </button>
     </aside>
