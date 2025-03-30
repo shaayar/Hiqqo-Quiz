@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 
 const QuizCreate = () => {
@@ -240,5 +241,6 @@ const QuizCreate = () => {
     </div>
   );
 };
+
 
 export default QuizCreate;
