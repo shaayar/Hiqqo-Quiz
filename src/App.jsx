@@ -16,8 +16,8 @@ import { createContext, useState } from "react";
 export const DataProvider = createContext() 
 
 function App() {
-
-  const [page,setPage] = useState(0)
+  const [page, setPage] = useState("dashboard");
+  // const [page,setPage] = useState(0)
   const [token,setToken] = useState(localStorage.getItem("token") || null)
 
   return (
