@@ -1,26 +1,26 @@
-
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const QuizCreate = () => {
   const [numQuestions, setNumQuestions] = useState(1);
-  const [quizData, setQuizData] = useState(
-    Array.from({ length: numQuestions }, () => ({
-      question: "",
-      options: ["", "", "", ""],
-      answer: null,
-    }))
-  );
+  const [quizData, setQuizData] = useState([
+    { question: "", options: ["", "", "", ""], answer: null },
+  ]);
   const [quizCode, setQuizCode] = useState("");
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [error, setError] = useState({ type: "", message: "" });
   const [focusedOption, setFocusedOption] = useState(0);
 
-  // Clear error when required fields are filled
+  const navigate = useNavigate();
+
   useEffect(() => {
     const current = quizData[currentQuestion];
     if (error.type === "question" && current.question.trim()) {
       setError({ type: "", message: "" });
-    } else if (error.type === "options" && !current.options.some(opt => !opt.trim())) {
+    } else if (
+      error.type === "options" &&
+      !current.options.some((opt) => !opt.trim())
+    ) {
       setError({ type: "", message: "" });
     } else if (error.type === "answer" && current.answer !== null) {
       setError({ type: "", message: "" });
@@ -31,9 +31,9 @@ const QuizCreate = () => {
     if (numQuestions < 100) {
       const newNum = numQuestions + 1;
       setNumQuestions(newNum);
-      setQuizData(prevData => [
+      setQuizData((prevData) => [
         ...prevData,
-        { question: "", options: ["", "", "", ""], answer: null }
+        { question: "", options: ["", "", "", ""], answer: null },
       ]);
     }
   };
@@ -42,7 +42,7 @@ const QuizCreate = () => {
     if (numQuestions > 1) {
       const newNum = numQuestions - 1;
       setNumQuestions(newNum);
-      setQuizData(prevData => prevData.slice(0, newNum));
+      setQuizData((prevData) => prevData.slice(0, newNum));
       if (currentQuestion >= newNum) {
         setCurrentQuestion(newNum - 1);
       }
@@ -50,7 +50,7 @@ const QuizCreate = () => {
   };
 
   const handleQuestionChange = (index, value) => {
-    setQuizData(prevData => {
+    setQuizData((prevData) => {
       const newData = [...prevData];
       newData[index].question = value;
       return newData;
@@ -58,7 +58,7 @@ const QuizCreate = () => {
   };
 
   const handleOptionChange = (questionIndex, optionIndex, value) => {
-    setQuizData(prevData => {
+    setQuizData((prevData) => {
       const newData = [...prevData];
       newData[questionIndex].options[optionIndex] = value;
       return newData;
@@ -66,7 +66,7 @@ const QuizCreate = () => {
   };
 
   const handleAnswerSelect = (questionIndex, optionIndex) => {
-    setQuizData(prevData => {
+    setQuizData((prevData) => {
       const newData = [...prevData];
       newData[questionIndex].answer = optionIndex;
       return newData;
@@ -74,33 +74,35 @@ const QuizCreate = () => {
   };
 
   const handleKeyDown = (e, optionIndex) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       e.preventDefault();
       if (optionIndex < 3) {
         setFocusedOption(optionIndex + 1);
-        document.getElementById(`option-${currentQuestion}-${optionIndex + 1}`)?.focus();
+        document
+          .getElementById(`option-${currentQuestion}-${optionIndex + 1}`)
+          ?.focus();
       }
     }
   };
 
   const validateCurrentQuestion = () => {
     const current = quizData[currentQuestion];
-    
+
     if (!current.question.trim()) {
       setError({ type: "question", message: "Please enter a question." });
       return false;
     }
-    
-    if (current.options.some(opt => !opt.trim())) {
+
+    if (current.options.some((opt) => !opt.trim())) {
       setError({ type: "options", message: "Please fill in all options." });
       return false;
     }
-    
+
     if (current.answer === null) {
       setError({ type: "answer", message: "Please select the correct answer." });
       return false;
     }
-    
+
     setError({ type: "", message: "" });
     return true;
   };
@@ -123,14 +125,25 @@ const QuizCreate = () => {
     setQuizCode(code);
   };
 
+  const handlePreviewClick = () => {
+    navigate("/preview", {
+      state: {
+        quizData,
+        quizCode,
+      },
+    });
+  };
+
   return (
     <div className="min-h-screen bg-white flex flex-col items-center text-gray-800">
-      <div className="mt-10 bg-gray-100 p-6 rounded-lg shadow-md max-w-4xl w-full">
+      <div className="mt-8 bg-gray-100 p-6 rounded-3xl shadow-md max-w-4xl w-full">
         <h1 className="text-3xl font-bold text-center">Create a New Quiz</h1>
-        
-        {/* Number of Questions Control */}
+
+        {/* Question Controls */}
         <div className="mt-6">
-          <label className="block text-xl font-semibold mb-2">Number of Questions</label>
+          <label className="block text-xl font-semibold mb-2">
+            Number of Questions
+          </label>
           <div className="flex items-center">
             <button
               onClick={decreaseQuestions}
@@ -152,6 +165,7 @@ const QuizCreate = () => {
           </div>
         </div>
 
+        {/* Quiz Form */}
         <form onSubmit={handleSubmit} className="space-y-6 mt-6">
           <div className="space-y-4">
             <div>
@@ -162,9 +176,13 @@ const QuizCreate = () => {
                 type="text"
                 placeholder="Enter your question here"
                 value={quizData[currentQuestion].question}
-                onChange={(e) => handleQuestionChange(currentQuestion, e.target.value)}
-                className={`w-full p-3 mt-2 rounded-lg text-gray-800 outline-none border ${
-                  error.type === "question" ? "border-red-500" : "border-gray-300"
+                onChange={(e) =>
+                  handleQuestionChange(currentQuestion, e.target.value)
+                }
+                className={`w-full p-3 mt-2 rounded-2xl text-gray-800 outline-none border ${
+                  error.type === "question"
+                    ? "border-red-500"
+                    : "border-gray-300"
                 }`}
               />
             </div>
@@ -176,7 +194,9 @@ const QuizCreate = () => {
                     type="radio"
                     name={`correct-answer-${currentQuestion}`}
                     checked={quizData[currentQuestion].answer === optionIndex}
-                    onChange={() => handleAnswerSelect(currentQuestion, optionIndex)}
+                    onChange={() =>
+                      handleAnswerSelect(currentQuestion, optionIndex)
+                    }
                     className={`mr-3 w-6 h-6 cursor-pointer ${
                       error.type === "answer" ? "border-red-500" : ""
                     }`}
@@ -186,10 +206,18 @@ const QuizCreate = () => {
                     type="text"
                     placeholder={`Option ${optionIndex + 1}`}
                     value={option}
-                    onChange={(e) => handleOptionChange(currentQuestion, optionIndex, e.target.value)}
+                    onChange={(e) =>
+                      handleOptionChange(
+                        currentQuestion,
+                        optionIndex,
+                        e.target.value
+                      )
+                    }
                     onKeyDown={(e) => handleKeyDown(e, optionIndex)}
-                    className={`w-full p-3 rounded-lg text-gray-800 outline-none border ${
-                      error.type === "options" ? "border-red-500" : "border-gray-300"
+                    className={`w-full p-3 rounded-2xl text-gray-800 outline-none border ${
+                      error.type === "options"
+                        ? "border-red-500"
+                        : "border-gray-300"
                     }`}
                     autoFocus={optionIndex === focusedOption}
                   />
@@ -197,11 +225,13 @@ const QuizCreate = () => {
               ))}
             </div>
           </div>
+
           {error.message && (
             <div className="p-3 bg-red-100 border border-red-400 text-red-700 rounded">
               {error.message}
             </div>
           )}
+
           <div className="flex justify-between mt-4">
             {currentQuestion > 0 && (
               <button
@@ -223,7 +253,7 @@ const QuizCreate = () => {
             ) : (
               <button
                 type="submit"
-                className="bg-green-600 px-6 py-2 rounded-lg text-white font-semibold hover:bg-green-700"
+                className=" px-6 py-2 btn text-white font-semibold mx-auto"
               >
                 Generate Quiz Code
               </button>
@@ -232,15 +262,25 @@ const QuizCreate = () => {
         </form>
 
         {quizCode && (
-          <div className="mt-8 text-center text-lg font-semibold">
-            <p>Quiz Created! Use this code to access the quiz:</p>
-            <p className="text-2xl text-yellow-500">{quizCode}</p>
-          </div>
+          <>
+            <div className="mt-8 text-center text-lg font-semibold">
+              <p>Quiz Created! Use this code to access the quiz:</p>
+              <p className="text-2xl text-yellow-500">{quizCode}</p>
+            </div>
+
+            <div className="text-center mt-4">
+              <button
+                onClick={handlePreviewClick}
+                className="bg-blue-600 btn text-white px-6 py-2 rounded-lg hover:bg-blue-700"
+              >
+                Preview Quiz
+              </button>
+            </div>
+          </>
         )}
       </div>
     </div>
   );
 };
-
 
 export default QuizCreate;
