@@ -1,14 +1,17 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import Sidebar from "../Common/Sidebar";
 import { useState } from "react";
 import QuizTypeModal from "./SelectQuizType";
 import { DataProvider } from "../../App";
 import MYlibrary from "./QuizList";
 import Reports from "./Reports";
+import SearchBar from "./SearchBar";
+import PastQuiz from "./PastQuiz";
+import UpcomingQuiz from "./UpcomingQuiz";
 
 function Dashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const {page,setPage} = useContext(DataProvider)
+  const { page, setPage } = useContext(DataProvider);
 
   return (
     <div className="flex h-screen w-full">
@@ -16,8 +19,13 @@ function Dashboard() {
       <div className="ml-64 w-full">
         <div className="p-5">
           <QuizTypeModal isOpen={isModalOpen} onClose={setIsModalOpen} />
-          {page == 'my-library' && <MYlibrary/>}
-          {page == 'reports' && <Reports/>}
+          <SearchBar />
+          <div className="mt-6">
+            <PastQuiz />
+            <UpcomingQuiz />
+          </div>
+          {page == "my-library" && <MYlibrary />}
+          {page == "reports" && <Reports />}
         </div>
       </div>
     </div>
