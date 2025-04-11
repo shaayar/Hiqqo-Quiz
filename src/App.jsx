@@ -8,6 +8,7 @@ import ForgotPassword from "./components/Authentication/ForgotPassword";
 import JoinPage from "./pages/Join";
 import QuizPage from "./pages/QuizPage";
 import QuizCreate from "./pages/QuizCreate";
+import QuizPreview from "./pages/QuizPreview";
 import Error from "./components/Common/Error";
 import Navbar from "./components/Common/Navbar";
 import Dashboard from "./components/Dashboard/Dashboard";
@@ -34,6 +35,7 @@ function App() {
           <Route path="/createQuiz" element={<QuizCreate />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/preview" element={<QuizPreview />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </div>
