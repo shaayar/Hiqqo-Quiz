@@ -10,7 +10,7 @@ const quizzes = new Array(6).fill().map(() => ({
 
 const Reports = () => {
   return (
-    <div className="max-w-4xl mx-auto p-4">
+    <div className="max-w-6xl mx-auto p-4">
       {/* Filters & Sort Buttons */}
       <div className="flex space-x-2 mb-4">
         <button className="px-4 py-2 border rounded flex items-center space-x-1">

@@ -8,6 +8,7 @@ import ForgotPassword from "./components/Authentication/ForgotPassword";
 import JoinPage from "./pages/Join";
 import QuizPage from "./pages/QuizPage";
 import QuizCreate from "./pages/QuizCreate";
+import QuizPreview from "./pages/QuizPreview";
 import Error from "./components/Common/Error";
 import Navbar from "./components/Common/Navbar";
 import Dashboard from "./components/Dashboard/Dashboard";
@@ -16,8 +17,8 @@ import { createContext, useState } from "react";
 export const DataProvider = createContext() 
 
 function App() {
-
-  const [page,setPage] = useState(0)
+  const [page, setPage] = useState("dashboard");
+  // const [page,setPage] = useState(0)
   const [token,setToken] = useState(localStorage.getItem("token") || null)
 
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/createQuiz" element={<QuizCreate />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/preview" element={<QuizPreview />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </div>
