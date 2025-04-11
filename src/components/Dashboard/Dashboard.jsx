@@ -3,8 +3,9 @@ import Sidebar from "../Common/Sidebar";
 import { useState } from "react";
 import QuizTypeModal from "./SelectQuizType";
 import { DataProvider } from "../../App";
-import MYlibrary from "./QuizList";
+import MyLibrary from "./MyLibrary";
 import Reports from "./Reports";
+import QuizDashboard from "./QuizDashboard";
 
 function Dashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,7 +17,8 @@ function Dashboard() {
       <div className="ml-64 w-full">
         <div className="p-5">
           <QuizTypeModal isOpen={isModalOpen} onClose={setIsModalOpen} />
-          {page == 'my-library' && <MYlibrary/>}
+          {page === "dashboard" && <QuizDashboard />}
+          {page == 'my-library' && <MyLibrary/>}
           {page == 'reports' && <Reports/>}
         </div>
       </div>
